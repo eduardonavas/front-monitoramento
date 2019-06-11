@@ -1,0 +1,21 @@
+.teste{
+ justify-content:center;
+ align-items:center;
+}
+
+.padding_20{
+    padding-bottom: 20px;
+}
+
+.padding_30{
+    padding-bottom: 30px;
+}
+
+.padding_40{
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.padding_50{
+    padding-bottom: 50px;
+}

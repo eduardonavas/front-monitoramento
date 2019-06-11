@@ -1,0 +1,43 @@
+
+<div class="card" style="width: 13rem;cursor: pointer;" (click)="openModal(template)">
+  <div class="card-body">
+    <div class="card-title"><h3>{{servidor.nome}}</h3></div>
+    <div class="card-text">IP: {{servidor.ip}}</div>
+    <div class="card-text">porta: {{servidor.porta}}</div>
+    <img *ngIf="servidor.status!='1' && servidor.status!='0'" src= "{{loading}}" width="42" height="42"/>
+    
+    <div *ngIf="servidor.status=='1' || servidor.status=='0'">   
+    
+    <div *ngIf="servidor.status=='1'" class="card-text" style="padding-bottom: 10px">Resp: {{servidor.tempoMedioResposta}}ms</div>
+    <img *ngIf="servidor.status=='1'" src="{{serverOk}}" width="42" height="42">
+    <div *ngIf="servidor.status=='0'" class="card-text" style="padding-bottom: 10px">Sem resposta</div>
+    <img *ngIf="servidor.status=='0'" src="{{serverNok}}" width="42" height="42"/>
+  </div>
+</div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Status Servidor {{servidor.ip}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div *ngIf="servidor.status == '1'" class="modal-body">
+    <p><span>Nome: </span>{{servidor.nome}}</p>
+    <p><span>Host Name: </span>{{servidor.hostName}}</p>
+    <p><span>IP: </span>{{servidor.ip}}</p>
+    <p><span>Porta de Conexao: </span>{{servidor.porta}}</p>
+    <p><span>TimeOut: </span>{{servidor.timeOut}}ms</p>
+    <p><span>Refresh Time Out: </span>{{servidor.tempoRefresh}}ms</p>
+    <p><span>Tempo de resposta: </span>{{servidor.tempoMedioResposta}}ms</p>
+  </div>
+  <div *ngIf="servidor.status == '0'" class="modal-body">
+    <h2>Sem Resposta</h2>
+  </div>
+  <div class="modal-footer">
+    <app-modal-edit [servidor]="servidor" (resposta)="respostaEditar($event)" (click)="modalRef.hide()"></app-modal-edit>
+    <app-demandas [servidor]="servidor" (click)="modalRef.hide()"></app-demandas>
+    <button class="btn btn-danger btn-sm" (click)="deletar(servidor)">Deletar</button>
+    <button class="btn btn-secondary btn-sm" (click)="modalRef.hide()">fechar</button>
+  </div>
+</ng-template>

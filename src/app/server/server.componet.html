@@ -1,0 +1,18 @@
+<div style="align-items: center">
+<h2 class="padding_40">Servidores</h2>
+
+	<div class="row">
+		<div class="col-md-12" *ngIf="erroNoServico == '1'">
+			<h1>Conectando ao monitoramento...</h1>
+		</div>
+		<div class="col-md-12" *ngIf="erroNoServico == '2'">
+			<h1>Sem conexão com a APi de monitoramento</h1>
+		</div>
+		<div class="col-md-12" *ngIf="erroNoServico != '1' && erroNoServico != '2' && global.servidores.length == 0">
+			<h1>Nenhum servidor cadastrado para monitormaneto</h1>
+		</div>
+		<div  *ngFor="let server of global.servidores" style="padding-left: 15px; padding-bottom: 15px" >
+			<app-modal [servidor]="server" (resposta)="getServidores()"></app-modal>
+		</div>
+	</div>
+</div>

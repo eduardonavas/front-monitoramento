@@ -1,0 +1,19 @@
+<table *ngIf="demandas.length > 0" class="table">
+    <thead>
+       <tr >
+        <th scope="col">Demanda</th>
+        <th scope="col">Aplicação</th>
+        <th scope="col">Ativada</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let demanda of demandas" >
+      <tr>
+        <td>{{demanda.demanda}}</td>
+        <td>{{demanda.aplicacao}}</td>
+        <td>
+          <img *ngIf="!demanda.ativa" src="{{fora}}" height="15px" width="15px">
+          <img *ngIf="demanda.ativa" src="{{ok}}" height="15px" width="15px">
+        </td>
+      </tr>
+    </tbody>
+ </table>

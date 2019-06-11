@@ -1,0 +1,27 @@
+<button type="button" class="btn btn-primary btn-sm" (click)="openModal(template)">
+ Demandas
+</button>
+
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">{{servidor.nome.substring(0,9)}} -> Atv: {{ok}} | Des: {{nok}} | Tot: {{demandas.length}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="overflow-y: auto; height:380px;">
+        <div *ngIf="carregando" style="padding-left: 30%;padding-top: 15%;">
+            <img  src="{{loading}}" width="200px" height="200px">
+        </div>
+       
+        <div *ngIf="!carregando" >
+            <app-table-demandas [demandas]="demandas"></app-table-demandas>
+        </div>
+        <div *ngIf="!carregando && demandas.length == 0">
+          <h2>nenhuma demanda</h2>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modalRef.hide()">Fechar</button>
+      </div>
+</ng-template>

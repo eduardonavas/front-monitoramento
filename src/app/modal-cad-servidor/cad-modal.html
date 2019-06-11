@@ -1,0 +1,48 @@
+<a class="dropdown-item" style="cursor: pointer" (click)="openModal(template)"><span><img src="{{serverOk}}" width="20px" height="20px"></span> Novo Servidor</a>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Novo Servidor</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input type="text" class="form-control" required [(ngModel)]="servidor.nome" maxlength="12"/>
+      </div>
+      <div class="form-group">
+        <label for="hostname">Host name:</label>
+        <input type="text" class="form-control" id="hostname" [(ngModel)]="servidor.hostName">
+      </div>
+      <div class="form-group">
+        <label for="ip">IP:</label>
+        <input type="text" class="form-control" id="ip" [(ngModel)]="servidor.ip">
+      </div>
+      <div class="form-group">
+        <label for="usuario">Usuario:</label>
+        <input type="text" class="form-control" id="usuario" [(ngModel)]="servidor.usuario">
+      </div>
+      <div class="form-group">
+        <label for="senha">Senha:</label>
+        <input type="password" class="form-control" id="senha" [(ngModel)]="servidor.senha">
+      </div>
+      <div class="form-group">
+        <label for="refreshTimeOut">Porta:</label>
+        <input type="number" class="form-control" id="porta" required [(ngModel)]="servidor.porta" required>
+      </div>
+      <div class="form-group">
+        <label for="pingTimeOut">TimeOut Conexao / ms:</label>
+        <input type="number" class="form-control" id="timeOut" required [(ngModel)]="servidor.timeOut" required>
+      </div>
+      <div class="form-group">
+        <label for="refreshTimeOut">Refresh Time out / ms:</label>
+        <input type="number" class="form-control" id="refreshTimeOut" required [(ngModel)]="servidor.tempoRefresh" minlength="5" required>
+      </div>
+  </div>
+  <div class="modal-footer">
+      <button class="btn btn-primary" (click)="showServidor()">Cadastrar</button>
+      <button class="btn btn-secondary" style="padding-left: 10px;" (click)="modalRef.hide()">Cancelar</button>
+  </div>
+</ng-template>
